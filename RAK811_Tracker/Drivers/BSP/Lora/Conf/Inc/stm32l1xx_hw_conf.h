@@ -114,8 +114,17 @@ Maintainer: Miguel Luis and Gregory Cristian
 #define RADIO_DIO_5_PIN                           RADIO_DIO_5_Pin
 #endif
 
-#define RADIO_ANT_SWITCH_PORT                     GPIOC
-#define RADIO_ANT_SWITCH_PIN                      GPIO_PIN_1
+#define RADIO_TCXO_VCC_PORT                       GPIOA
+#define RADIO_TCXO_VCC_PIN                        GPIO_PIN_12
+
+#define RADIO_ANT_SWITCH_PORT_RX                  RADIO_RF_CBT_HF_GPIO_Port
+#define RADIO_ANT_SWITCH_PIN_RX                   RADIO_RF_CBT_HF_Pin
+
+#define RADIO_ANT_SWITCH_PORT_TX_BOOST            RADIO_RF_CTX_PA_GPIO_Port
+#define RADIO_ANT_SWITCH_PIN_TX_BOOST             RADIO_RF_CTX_PA_Pin
+
+#define RADIO_ANT_SWITCH_PORT_TX_RFO              RADIO_RF_CRX_RX_GPIO_Port
+#define RADIO_ANT_SWITCH_PIN_TX_RFO               RADIO_RF_CRX_RX_Pin
 
 #define BAT_LEVEL_PORT                            ADC_VBAT_GPIO_Port
 #define BAT_LEVEL_PIN                             ADC_VBAT_Pin

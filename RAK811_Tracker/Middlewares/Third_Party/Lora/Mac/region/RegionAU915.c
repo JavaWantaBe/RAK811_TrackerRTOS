@@ -31,7 +31,6 @@ Maintainer: Miguel Luis ( Semtech ), Gregory Cristian ( Semtech ) and Daniel Jae
 #include "Region.h"
 #include "RegionCommon.h"
 #include "RegionAU915.h"
-#include "debug.h"
 
 // Definitions
 #define CHANNELS_MASK_SIZE              6
