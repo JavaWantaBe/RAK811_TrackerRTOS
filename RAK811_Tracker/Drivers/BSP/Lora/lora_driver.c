@@ -51,8 +51,6 @@
 #include <stdint.h>
 #include <string.h>
 #include "timeServer.h"
-
-#include "bsp.h"
 #include "tiny_sscanf.h"
 #include "hw.h"
 
