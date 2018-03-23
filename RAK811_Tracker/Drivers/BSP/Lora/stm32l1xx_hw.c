@@ -60,7 +60,6 @@ Maintainer: Miguel Luis and Gregory Cristian
 #include "radio.h"
 
 #include "bsp.h"
-#include "debug.h"
 #include "vcom.h"
 #include "hw.h"
 

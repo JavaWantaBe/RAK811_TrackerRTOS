@@ -69,7 +69,7 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+#define REGION_EU868
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

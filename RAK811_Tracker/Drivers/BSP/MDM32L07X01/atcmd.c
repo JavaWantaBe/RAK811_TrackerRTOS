@@ -46,7 +46,6 @@
 
 #include <stdarg.h>
 #include "tiny_vsnprintf.h"
-#include "debug.h"
 
 
 /* External variables --------------------------------------------------------*/

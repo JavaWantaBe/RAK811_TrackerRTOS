@@ -54,7 +54,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l1xx_hal.h"
-#include "hw_msp.h"
 #include "low_power_manager.h"
 
 
