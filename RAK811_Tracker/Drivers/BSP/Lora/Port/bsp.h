@@ -6,18 +6,18 @@
 (______/|_____)_|_|_| \__)_____)\____)_| |_|
     (C)2013 Semtech
 
-Description: Timer objects and scheduling management
+Description: contains all hardware driver
 
 License: Revised BSD License, see LICENSE.TXT file include in the project
 
 Maintainer: Miguel Luis and Gregory Cristian
 */
-/******************************************************************************
-  * @file    timeServer.h
+ /******************************************************************************
+  * @file    bsp.h
   * @author  MCD Application Team
   * @version V1.1.4
   * @date    08-January-2018
-  * @brief   is the timer server driver
+  * @brief   contains all hardware driver
   ******************************************************************************
   * @attention
   *
@@ -57,109 +57,53 @@ Maintainer: Miguel Luis and Gregory Cristian
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __TIMESERVER_H__
-#define __TIMESERVER_H__
+#ifndef __BSP_H__
+#define __BSP_H__
 
 #ifdef __cplusplus
  extern "C" {
 #endif
-
 /* Includes ------------------------------------------------------------------*/
-#include <stdbool.h>
 #include <stdint.h>
-#include "utilities.h"
-
 /* Exported types ------------------------------------------------------------*/
 
-/*!
- * \brief Timer object description
- */
-typedef struct TimerEvent_s
-{
-    uint32_t Timestamp;         //! Expiring timer value in ticks from TimerContext
-    uint32_t ReloadValue;       //! Reload Value when Timer is restarted
-    bool IsRunning;             //! Is the timer currently running
-    void ( *Callback )( void ); //! Timer IRQ callback function
-    struct TimerEvent_s *Next;  //! Pointer to the next Timer object.
-} TimerEvent_t;
+typedef struct{
+  float pressure;             /* in mbar */
+  float temperature;          /* in �C   */
+  float humidity;             /* in %    */
+  int32_t latitude;           /* Latitude */
+  int32_t longitude ;         /* Longitude */
+  int16_t altitudeGps;        /* in m */
+  int16_t altitudeBar ;       /* in m * 10 */
+  /**more may be added*/
+} sensor_t;
 
 
 /* Exported constants --------------------------------------------------------*/
 /* External variables --------------------------------------------------------*/
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */ 
-
-/*!
- * \brief Initializes the timer object
+/**
+ * @brief  initializes the sensor
  *
- * \remark TimerSetValue function must be called before starting the timer.
- *         this function initializes timestamp and reload value at 0.
- *
- * \param [IN] obj          Structure containing the timer object parameters
- * \param [IN] callback     Function callback called at the end of the timeout
+ * @note
+ * @retval None
  */
-void TimerInit( TimerEvent_t *obj, void ( *callback )( void ) );
+void  BSP_sensor_Init( void  );
 
-/*!
- * \brief Timer IRQ event handler
+/**
+ * @brief  sensor  read. 
  *
- * \note Head Timer Object is automaitcally removed from the List
- *
- * \note e.g. it is snot needded to stop it
+ * @note none
+ * @retval sensor_data
  */
-void TimerIrqHandler( void );
-
-/*!
- * \brief Starts and adds the timer object to the list of timer events
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerStart( TimerEvent_t *obj );
-
-/*!
- * \brief Stops and removes the timer object from the list of timer events
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerStop( TimerEvent_t *obj );
-
-/*!
- * \brief Resets the timer object
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerReset( TimerEvent_t *obj );
-
-/*!
- * \brief Set timer new timeout value
- *
- * \param [IN] obj   Structure containing the timer object parameters
- * \param [IN] value New timer timeout value
- */
-void TimerSetValue( TimerEvent_t *obj, uint32_t value );
-
-
-/*!
- * \brief Read the current time
- *
- * \retval returns current time in ms
- */
-TimerTime_t TimerGetCurrentTime( void );
-
-/*!
- * \brief Return the Time elapsed since a fix moment in Time
- *
- * \param [IN] savedTime    fix moment in Time
- * \retval time             returns elapsed time in ms
- */
-TimerTime_t TimerGetElapsedTime( TimerTime_t savedTime );
+void BSP_sensor_Read( sensor_t *sensor_data);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __TIMESERVER_H__*/
-
+#endif /* __BSP_H__ */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

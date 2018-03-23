@@ -1,10 +1,27 @@
-/**
+/*
+ / _____)             _              | |
+( (____  _____ ____ _| |_ _____  ____| |__
+ \____ \| ___ |    (_   _) ___ |/ ___)  _ \
+ _____) ) ____| | | || |_| ____( (___| | | |
+(______/|_____)_|_|_| \__)_____)\____)_| |_|
+    (C)2013 Semtech
+
+Description: Generic SX1276mb1mas driver implementation
+
+License: Revised BSD License, see LICENSE.TXT file include in the project
+
+Maintainer: Miguel Luis and Gregory Cristian
+*/
+ /*******************************************************************************
+  * @file    mlm32l07x01.h
+  * @author  MCD Application Team
+  * @version V1.0.3
+  * @date    08-September-2017
+  * @brief   driver LoRa module murata cmwx1zzabz-091
   ******************************************************************************
-  * @file    stm32l1xx_it.h
-  * @brief   This file contains the headers of the interrupt handlers.
-  ******************************************************************************
+  * @attention
   *
-  * COPYRIGHT(c) 2018 STMicroelectronics
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -30,44 +47,62 @@
   *
   ******************************************************************************
   */
-
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32L1xx_IT_H
-#define __STM32L1xx_IT_H
+#ifndef __MLM32L07X01_H__
+#define __MLM32L07X01_H__
 
 #ifdef __cplusplus
  extern "C" {
-#endif 
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32l1xx_hal.h"
-#include "main.h"
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
 
-void NMI_Handler(void);
-void HardFault_Handler(void);
-void MemManage_Handler(void);
-void BusFault_Handler(void);
-void UsageFault_Handler(void);
-void DebugMon_Handler(void);
-void SysTick_Handler(void);
-void EXTI0_IRQHandler(void);
-void EXTI1_IRQHandler(void);
-void EXTI3_IRQHandler(void);
-void DMA1_Channel4_IRQHandler(void);
-void ADC1_IRQHandler(void);
-void I2C1_EV_IRQHandler(void);
-void USART1_IRQHandler(void);
-void USART3_IRQHandler(void);
-void EXTI15_10_IRQHandler(void);
+#define BOARD_WAKEUP_TIME  5 //TCXO
+
+
+
+
+
+#define RF_MID_BAND_THRESH                          525000000
+
+/* Exported functions ------------------------------------------------------- */ 
+
+/*!
+ * \brief Initializes the radio I/Os pins interface
+ */
+void SX1276IoInit( void );
+
+
+/*!
+ * \brief De-initializes the radio I/Os pins interface. 
+ *
+ * \remark Useful when going in MCU lowpower modes
+ */
+void SX1276IoDeInit( void );
+
+/*!
+ * \brief Checks if the given RF frequency is supported by the hardware
+ *
+ * \param [IN] frequency RF frequency to be checked
+ * \retval isSupported [true: supported, false: unsupported]
+ */
+bool SX1276CheckRfFrequency( uint32_t frequency );
+
+
+/*!
+ * \brief set RF output power
+ *
+ * \param [IN] power in dBm
+ * \retval Nonce
+ */
+void SX1276SetRfTxPower( int8_t power );
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __STM32L1xx_IT_H */
+#endif /* __MLM32L07X01_H__*/
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -1,23 +1,9 @@
-/*
- / _____)             _              | |
-( (____  _____ ____ _| |_ _____  ____| |__
- \____ \| ___ |    (_   _) ___ |/ ___)  _ \
- _____) ) ____| | | || |_| ____( (___| | | |
-(______/|_____)_|_|_| \__)_____)\____)_| |_|
-    (C)2013 Semtech
-
-Description: Timer objects and scheduling management
-
-License: Revised BSD License, see LICENSE.TXT file include in the project
-
-Maintainer: Miguel Luis and Gregory Cristian
-*/
-/******************************************************************************
-  * @file    timeServer.h
+ /******************************************************************************
+  * @file    debug.h
   * @author  MCD Application Team
   * @version V1.1.4
   * @date    08-January-2018
-  * @brief   is the timer server driver
+  * @brief   Header for driver debug.c module
   ******************************************************************************
   * @attention
   *
@@ -57,109 +43,83 @@ Maintainer: Miguel Luis and Gregory Cristian
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __TIMESERVER_H__
-#define __TIMESERVER_H__
+#ifndef __DEBUG_H__
+#define __DEBUG_H__
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include <stdbool.h>
-#include <stdint.h>
-#include "utilities.h"
+
+
+
+#include <string.h>
+#include <stdio.h>
+#include "hw_conf.h"
+#include "vcom.h"
 
 /* Exported types ------------------------------------------------------------*/
-
-/*!
- * \brief Timer object description
- */
-typedef struct TimerEvent_s
-{
-    uint32_t Timestamp;         //! Expiring timer value in ticks from TimerContext
-    uint32_t ReloadValue;       //! Reload Value when Timer is restarted
-    bool IsRunning;             //! Is the timer currently running
-    void ( *Callback )( void ); //! Timer IRQ callback function
-    struct TimerEvent_s *Next;  //! Pointer to the next Timer object.
-} TimerEvent_t;
-
-
 /* Exported constants --------------------------------------------------------*/
 /* External variables --------------------------------------------------------*/
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */ 
 
-/*!
- * \brief Initializes the timer object
- *
- * \remark TimerSetValue function must be called before starting the timer.
- *         this function initializes timestamp and reload value at 0.
- *
- * \param [IN] obj          Structure containing the timer object parameters
- * \param [IN] callback     Function callback called at the end of the timeout
- */
-void TimerInit( TimerEvent_t *obj, void ( *callback )( void ) );
+void DBG_Init( void );
 
-/*!
- * \brief Timer IRQ event handler
- *
- * \note Head Timer Object is automaitcally removed from the List
- *
- * \note e.g. it is snot needded to stop it
- */
-void TimerIrqHandler( void );
+void Error_Handler_( void );
 
-/*!
- * \brief Starts and adds the timer object to the list of timer events
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerStart( TimerEvent_t *obj );
+#ifdef DEBUG
 
-/*!
- * \brief Stops and removes the timer object from the list of timer events
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerStop( TimerEvent_t *obj );
+#define DBG_GPIO_WRITE( gpio, n, x )  HAL_GPIO_WritePin( gpio, n, (GPIO_PinState)(x) )
 
-/*!
- * \brief Resets the timer object
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerReset( TimerEvent_t *obj );
+#define DBG_GPIO_SET( gpio, n )       gpio->BSRR = n
 
-/*!
- * \brief Set timer new timeout value
- *
- * \param [IN] obj   Structure containing the timer object parameters
- * \param [IN] value New timer timeout value
- */
-void TimerSetValue( TimerEvent_t *obj, uint32_t value );
+#define DBG_GPIO_RST( gpio, n )       gpio->BSRR = n
+
+#define DBG_RTC_OUTPUT RTC_OUTPUT_DISABLE; /* RTC_OUTPUT_ALARMA on PC13 */
+
+#define DBG( x )  do{ x } while(0)
+
+#ifdef TRACE
+
+#define DBG_PRINTF(...)    vcom_Send(__VA_ARGS__)
+
+#define DBG_PRINTF_CRITICAL(...)   vcom_Send_Lp(__VA_ARGS__)
+
+#else /*TRACE*/
+
+#define DBG_PRINTF(...) 
+
+#define DBG_PRINTF_CRITICAL(...) 
+
+#endif /*TRACE*/
 
 
-/*!
- * \brief Read the current time
- *
- * \retval returns current time in ms
- */
-TimerTime_t TimerGetCurrentTime( void );
+#else /* DEBUG */
 
-/*!
- * \brief Return the Time elapsed since a fix moment in Time
- *
- * \param [IN] savedTime    fix moment in Time
- * \retval time             returns elapsed time in ms
- */
-TimerTime_t TimerGetElapsedTime( TimerTime_t savedTime );
+#define DBG_GPIO_WRITE( gpio, n, x )
+
+#define DBG_GPIO_SET( gpio, n )
+
+#define DBG_GPIO_RST( gpio, n )
+
+#define DBG( x ) do{  } while(0)
+
+#define DBG_PRINTF(...)
+
+#define DBG_PRINTF_CRITICAL(...) 
+                      
+#define DBG_RTC_OUTPUT RTC_OUTPUT_DISABLE;
+
+#endif /* DEBUG */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __TIMESERVER_H__*/
+#endif /* __DEBUG_H__*/
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

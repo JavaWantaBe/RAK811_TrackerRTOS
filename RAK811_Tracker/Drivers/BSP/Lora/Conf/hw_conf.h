@@ -6,18 +6,18 @@
 (______/|_____)_|_|_| \__)_____)\____)_| |_|
     (C)2013 Semtech
 
-Description: Timer objects and scheduling management
+Description: contains hardaware configuration Macros and Constants
 
 License: Revised BSD License, see LICENSE.TXT file include in the project
 
 Maintainer: Miguel Luis and Gregory Cristian
 */
-/******************************************************************************
-  * @file    timeServer.h
+ /******************************************************************************
+  * @file    hw_conf.h
   * @author  MCD Application Team
   * @version V1.1.4
   * @date    08-January-2018
-  * @brief   is the timer server driver
+  * @brief   contains hardware configuration Macros and Constants
   ******************************************************************************
   * @attention
   *
@@ -57,109 +57,98 @@ Maintainer: Miguel Luis and Gregory Cristian
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __TIMESERVER_H__
-#define __TIMESERVER_H__
+#ifndef __HW_CONF_H__
+#define __HW_CONF_H__
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include <stdbool.h>
-#include <stdint.h>
-#include "utilities.h"
 
+#ifdef USE_STM32F0XX_NUCLEO
+  #include "stm32f0xx_hal.h"
+  #include "stm32f0xx_nucleo.h"
+  #include "stm32f0xx_hal_conf.h"
+  #error "create stm32f0xx_hw_conf.h "
+#endif
+
+#ifdef USE_STM32F1XX_NUCLEO
+  #include "stm32f1xx_hal.h"
+  #include "stm32f1xx_nucleo.h"
+  #include "stm32f1xx_hal_conf.h"
+  #error "create stm32f1xx_hw_conf.h "
+#endif
+
+#ifdef USE_STM32F3XX_NUCLEO
+  #include "stm32f3xx_hal.h"
+  #include "stm32f3xx_nucleo.h"
+  #include "stm32f3xx_hal_conf.h"
+  #error "create stm32f3xx_hw_conf.h "
+#endif
+
+#ifdef USE_STM32F4XX_NUCLEO
+  #include "stm32f4xx_hal.h"
+  #include "stm32f4xx_nucleo.h"
+  #include "stm32f4xx_hal_conf.h"
+  #error "create stm32f4xx_hw_conf.h "
+#endif
+
+#ifdef USE_STM32L0XX_NUCLEO
+  #include "stm32l0xx_hal.h"
+  #include "stm32l0xx_nucleo.h"
+  #include "stm32l0xx_hal_conf.h"
+  #include "stm32l0xx_hw_conf.h"
+#endif
+
+#ifdef USE_STM32L1XX_NUCLEO
+  #include "stm32l1xx_hal.h"
+  #include "stm32l1xx_nucleo.h"
+  #include "stm32l1xx_hal_conf.h"
+  #include "stm32l1xx_hw_conf.h"
+#endif
+
+#ifdef USE_STM32L4XX_NUCLEO
+  #include "stm32l4xx_hal.h"
+  #include "stm32l4xx_nucleo.h"
+  #include "stm32l4xx_hal_conf.h"
+  #include "stm32l4xx_hw_conf.h"
+#endif
+
+#ifdef USE_B_L072Z_LRWAN1
+  #include "stm32l0xx_hal.h"
+  #include "b-l072z-lrwan1.h"
+  #include "stm32l0xx_hal_conf.h"
+  #include "mlm32l0xx_hw_conf.h"
+#endif
+
+#ifdef USE_RAK811_LORA
+  #include "stm32l1xx.h"
+  #include "stm32l1xx_hal_conf.h"
+  #include "stm32l1xx_hw_conf.h"
+#endif
+
+/* --------Preprocessor compile swicth------------ */
+/* debug swicthes in debug.h */
+#define DEBUG
+#define TRACE
+   
+/* uncomment below line to never enter lowpower modes in main.c*/
+#define LOW_POWER_DISABLE
+
+/* debug swicthes in bsp.c */
+#define SENSOR_ENABLED
+
+   
 /* Exported types ------------------------------------------------------------*/
-
-/*!
- * \brief Timer object description
- */
-typedef struct TimerEvent_s
-{
-    uint32_t Timestamp;         //! Expiring timer value in ticks from TimerContext
-    uint32_t ReloadValue;       //! Reload Value when Timer is restarted
-    bool IsRunning;             //! Is the timer currently running
-    void ( *Callback )( void ); //! Timer IRQ callback function
-    struct TimerEvent_s *Next;  //! Pointer to the next Timer object.
-} TimerEvent_t;
-
-
 /* Exported constants --------------------------------------------------------*/
-/* External variables --------------------------------------------------------*/
-/* Exported macros -----------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */ 
-
-/*!
- * \brief Initializes the timer object
- *
- * \remark TimerSetValue function must be called before starting the timer.
- *         this function initializes timestamp and reload value at 0.
- *
- * \param [IN] obj          Structure containing the timer object parameters
- * \param [IN] callback     Function callback called at the end of the timeout
- */
-void TimerInit( TimerEvent_t *obj, void ( *callback )( void ) );
-
-/*!
- * \brief Timer IRQ event handler
- *
- * \note Head Timer Object is automaitcally removed from the List
- *
- * \note e.g. it is snot needded to stop it
- */
-void TimerIrqHandler( void );
-
-/*!
- * \brief Starts and adds the timer object to the list of timer events
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerStart( TimerEvent_t *obj );
-
-/*!
- * \brief Stops and removes the timer object from the list of timer events
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerStop( TimerEvent_t *obj );
-
-/*!
- * \brief Resets the timer object
- *
- * \param [IN] obj Structure containing the timer object parameters
- */
-void TimerReset( TimerEvent_t *obj );
-
-/*!
- * \brief Set timer new timeout value
- *
- * \param [IN] obj   Structure containing the timer object parameters
- * \param [IN] value New timer timeout value
- */
-void TimerSetValue( TimerEvent_t *obj, uint32_t value );
-
-
-/*!
- * \brief Read the current time
- *
- * \retval returns current time in ms
- */
-TimerTime_t TimerGetCurrentTime( void );
-
-/*!
- * \brief Return the Time elapsed since a fix moment in Time
- *
- * \param [IN] savedTime    fix moment in Time
- * \retval time             returns elapsed time in ms
- */
-TimerTime_t TimerGetElapsedTime( TimerTime_t savedTime );
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __TIMESERVER_H__*/
+#endif /* __HW_CONF_H__ */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
