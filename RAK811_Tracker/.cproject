@@ -46,16 +46,14 @@
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/include"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
-									<listOptionValue builtIn="false" value="../Drivers/BSP/RAK811"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src"/>
-									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/boards"/>
-									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/mcu/stm32"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/mac"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/mac/region"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/radio"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/system"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/system/crypto"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/Components/Common"/>
+									<listOptionValue builtIn="false" value="../Drivers/BSP/RAK811"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__weak=&quot;__attribute__((weak))&quot;"/>
@@ -128,7 +126,7 @@
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Inc"/>
-						<entry excluding="Third_Party/Lora/src/peripherals|Third_Party/Lora/src/radio/sx1272|Third_Party/Lora/src/radio/sx126x|Third_Party/Lora/src/boards/NucleoL152|Third_Party/Lora/src/boards/mcu/stm32|Third_Party/Lora/src/boards/mcu/saml21|Third_Party/Lora/src/boards/SensorNode|Third_Party/Lora/src/boards/NucleoL073|Third_Party/Lora/src/boards/LoRaMote|Third_Party/Lora/src/boards/SK-iM880A|Third_Party/Lora/src/boards/SAML21|Third_Party/Lora/src/boards/NAMote72|Third_Party/Lora/src/boards/MoteII|Third_Party/Lora/src/apps|Third_Party/Lora/cmake|Third_Party/Lora/boards/mcu" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
+						<entry excluding="Third_Party/Lora/src/boards|Third_Party/Lora/src/peripherals|Third_Party/Lora/src/radio/sx1272|Third_Party/Lora/src/radio/sx126x|Third_Party/Lora/src/boards/NucleoL152|Third_Party/Lora/src/boards/mcu/stm32|Third_Party/Lora/src/boards/mcu/saml21|Third_Party/Lora/src/boards/SensorNode|Third_Party/Lora/src/boards/NucleoL073|Third_Party/Lora/src/boards/LoRaMote|Third_Party/Lora/src/boards/SK-iM880A|Third_Party/Lora/src/boards/SAML21|Third_Party/Lora/src/boards/NAMote72|Third_Party/Lora/src/boards/MoteII|Third_Party/Lora/src/apps|Third_Party/Lora/cmake|Third_Party/Lora/boards/mcu" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
@@ -183,16 +181,14 @@
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/include"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
-									<listOptionValue builtIn="false" value="../Drivers/BSP/RAK811"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src"/>
-									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/boards"/>
-									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/mcu/stm32"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/mac"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/mac/region"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/radio"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/system"/>
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/Lora/src/system/crypto"/>
 									<listOptionValue builtIn="false" value="../Drivers/BSP/Components/Common"/>
+									<listOptionValue builtIn="false" value="../Drivers/BSP/RAK811"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.symbols.defined.1670122205" name="Defined symbols" superClass="com.atollic.truestudio.gcc.symbols.defined" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__weak=&quot;__attribute__((weak))&quot;"/>
@@ -265,7 +261,7 @@
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Inc"/>
-						<entry excluding="Third_Party/Lora/src/peripherals|Third_Party/Lora/src/radio/sx1272|Third_Party/Lora/src/radio/sx126x|Third_Party/Lora/src/boards/NucleoL152|Third_Party/Lora/src/boards/mcu/stm32|Third_Party/Lora/src/boards/mcu/saml21|Third_Party/Lora/src/boards/SensorNode|Third_Party/Lora/src/boards/NucleoL073|Third_Party/Lora/src/boards/LoRaMote|Third_Party/Lora/src/boards/SK-iM880A|Third_Party/Lora/src/boards/SAML21|Third_Party/Lora/src/boards/NAMote72|Third_Party/Lora/src/boards/MoteII|Third_Party/Lora/src/apps|Third_Party/Lora/cmake|Third_Party/Lora/boards/mcu" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
+						<entry excluding="Third_Party/Lora/src/boards|Third_Party/Lora/src/peripherals|Third_Party/Lora/src/radio/sx1272|Third_Party/Lora/src/radio/sx126x|Third_Party/Lora/src/boards/NucleoL152|Third_Party/Lora/src/boards/mcu/stm32|Third_Party/Lora/src/boards/mcu/saml21|Third_Party/Lora/src/boards/SensorNode|Third_Party/Lora/src/boards/NucleoL073|Third_Party/Lora/src/boards/LoRaMote|Third_Party/Lora/src/boards/SK-iM880A|Third_Party/Lora/src/boards/SAML21|Third_Party/Lora/src/boards/NAMote72|Third_Party/Lora/src/boards/MoteII|Third_Party/Lora/src/apps|Third_Party/Lora/cmake|Third_Party/Lora/boards/mcu" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="startup"/>
 					</sourceEntries>
