@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
-<ProjectName>/home/richard/Projects/STM32/RAK811_Tracker/RAK811_Tracker/\RAK811_Tracker</ProjectName>
+<ProjectName>/home/richard/Projects/RAK811_TrackerRTOS/RAK811_Tracker/\RAK811_Tracker</ProjectName>
 <ProjectNature>C</ProjectNature> 
 <CMSIS>../Drivers/CMSIS</CMSIS>
 <HAL_Driver>/home/richard/STM32Cube/Repository//STM32Cube_FW_L1_V1.8.1/Drivers/CMSIS</HAL_Driver>
